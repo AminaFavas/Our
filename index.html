@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Favas & Amina Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --maroon: #630d0d;
+            --Black-ash: #28231D;
+            --cream: #fffdf5;
+            --petal-pink: #ffb6c1;
+            --sparkle-gold: #ffdf00;
+            --vellum: rgba(255, 255, 255, 0.85);
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            height: 100%; width: 100%;
+            background-color: var(--cream);
+            overflow: hidden; /* Stops whole page from moving */
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- SPARKLING & PETALS --- */
+        #fx-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .particle { position: absolute; animation: fall linear forwards; }
+        .glitter { background: white; border-radius: 50%; box-shadow: 0 0 10px var(--sparkle-gold); animation: fall linear forwards, twinkle 0.8s infinite alternate; }
+        .petal-pink { background: var(--petal-pink); border-radius: 50% 0 50% 50%; transform: rotate(45deg); }
+        .petal-maroon { background: var(--maroon); border-radius: 50% 0 50% 50%; transform: rotate(-15deg); }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes twinkle { from { opacity: 0.3; transform: scale(0.6); } to { opacity: 1; transform: scale(1.1); } }
+
+        /* --- LAYOUT --- */
+        .invitation-wrapper {
+            position: relative;
+            width: 100vw; height: 100vh;
+            perspective: 2500px;
+        }
+
+        /* FIXED SCROLL BUG: Initial state is 'hidden' */
+        .inner-content {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: var(--cream);
+            overflow-y: hidden; 
+            display: flex; flex-direction: column; align-items: center;
+            text-align: center;
+            z-index: 1;
+            font-family: 'Monotype Corsiva', 'Apple Chancery', cursive;
+        }
+
+        /* Unlock scroll only when card is open */
+        .is-open .inner-content {
+            overflow-y: auto;
+        }
+
+        .flap {
+            position: absolute;
+            top: 0; height: 100%; width: 50%;
+            background: var(--vellum);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            transition: transform 3.0s cubic-bezier(0.4, 0, 0.2, 1), opacity 2.5s ease-in;
+        }
+
+        .flap-left { left: 0; transform-origin: left; border-right: 0.5px solid rgba(212,175,55,0.2); }
+        .flap-right { right: 0; transform-origin: right; border-left: 0.5px solid rgba(212,175,55,0.2); }
+
+        .flowers {
+            position: absolute; bottom: 0; width: 200vw; height: 35vh;
+            background-image: url('./1000124382.png');
+            background-size: contain; background-repeat: no-repeat; background-position: center bottom;
+        }
+        .flap-right .flowers { left: -100vw; }
+
+        .seal {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px; height: 80px; background: #fff; border-radius: 50%;
+            z-index: 20; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: opacity 1.5s;
+        }
+
+        .is-open .flap-left { transform: rotateY(-140deg); opacity: 0; }
+        .is-open .flap-right { transform: rotateY(140deg); opacity: 0; }
+        .is-open .seal { opacity: 0; pointer-events: none; }
+
+        .names { font-family: 'Gabriola', cursive; color: var(--maroon); font-size: 4.2rem; margin: 15px 0; line-height: 1.1; }
+
+    </style>
+</head>
+<body>
+
+    <div id="fx-container"></div>
+
+    <div class="invitation-wrapper" id="invite">
+        
+        <div class="inner-content">
+            <div style="padding: 80px 20px 20px 20px;">
+                <p style="color: var(--Black-ash); letter-spacing: 2px; font-size: 1.2rem;">Together with our family</p>
+                <h1 class="names">Favas</h1>
+                <h1 class="names"> & </h1>
+                <h1 class="names">Amina</h1>
+                <p style="color: #555; font-size: 1.5rem; max-width: 90%; margin: 20px auto; line-height: 1.4;">
+                    We invite you to share in the joy as we begin our beautiful journey together.
+                </p>
+            </div>
+
+            <div style="width: 200px; border-top: 1.5px solid var(--gold); margin: 30px auto;"></div>
+
+            <div style="padding-bottom: 120px; width: 100%;">
+                <h2 style="color: var(--maroon); font-size: 2.6rem; margin: 0; font-weight: normal;">12 April Sunday 2026</h2>
+                <p style="font-size: 2.2rem; color: var(--Black-ash); margin: 10px 0;">11:00 am</p>
+
+                <div style="margin: 40px 0;">
+                    <p style="font-size: 1.2rem; color: #888; text-transform: uppercase; letter-spacing: 3px;">At</p>
+                    <h3 style="color: var(--maroon); font-size: 2.4rem; margin: 0; font-weight: normal;">Vrindhavanam Convention Center</h3>
+                    <p style="font-size: 1.8rem; color: #555; font-style: italic;">(Lotus Hall)</p>
+                    <p style="font-size: 1.6rem; color: #666; margin-top: 10px;">Palode</p>
+                </div>
+
+                <p style="font-size: 1.6rem; color: var(--maroon); border-top: 1px solid rgba(212,175,55,0.3); border-bottom: 1px solid rgba(212,175,55,0.3); display: inline-block; padding: 15px 30px; margin: 20px 0;">
+                    Join us with your prayers and blessings
+                </p>
+
+                <div style="margin-top: 40px;">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Vrindhavanam+Convention+Center+Palode" target="_blank" 
+                       style="display: inline-block; padding: 16px 45px; background: var(--maroon); color: #fff; text-decoration: none; border-radius: 40px; font-weight: bold; font-family: sans-serif; box-shadow: 0 4px 15px rgba(99,13,13,0.3);">
+                       📍 OPEN IN GOOGLE MAPS
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flap flap-left" id="fL"><div class="flowers"></div></div>
+        <div class="flap flap-right" id="fR"><div class="flowers"></div></div>
+        <div class="seal" id="s1" onclick="handleOpen()">
+            <span style="font-size: 30px; color: #ddd;">🌿</span>
+        </div>
+    </div>
+
+    <script>
+        function handleOpen() {
+            document.getElementById('invite').classList.add('is-open');
+            // Remove front elements completely after animation for smooth scrolling
+            setTimeout(() => {
+                document.getElementById('fL').style.display = 'none';
+                document.getElementById('fR').style.display = 'none';
+                document.getElementById('s1').style.display = 'none';
+            }, 3200);
+        }
+
+        function createParticle() {
+            const container = document.getElementById('fx-container');
+            if (!container) return;
+            const p = document.createElement('div');
+            const rand = Math.random();
+            p.className = 'particle';
+            
+            if (rand > 0.7) {
+                p.classList.add('glitter');
+                p.style.width = p.style.height = (Math.random() * 3 + 2) + 'px';
+            } else if (rand > 0.35) {
+                p.classList.add('petal-pink');
+                p.style.width = p.style.height = (Math.random() * 10 + 6) + 'px';
+            } else {
+                p.classList.add('petal-maroon');
+                p.style.width = p.style.height = (Math.random() * 8 + 8) + 'px';
+            }
+
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            container.appendChild(p);
+            setTimeout(() => p.remove(), 7000);
+        }
+
+        setInterval(createParticle, 200);
+    </script>
+</body>
+</html>
